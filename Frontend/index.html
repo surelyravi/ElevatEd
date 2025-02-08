@@ -1,1 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ElevatEd</title>
+    <link rel="stylesheet" href="./Home/style.css">
+    <link rel="icon" type="image/x-icon" href="logo.webp">
+</head>
+<body>
 
+    <!-- Header -->
+    <header class="header">
+        <h1>ElevatEd</h1>
+        <ul class="menu-bar">
+            <li><a href="#">Home</a></li>
+            <li class="dropdown">
+                <a href="#">Find Mentor</a>
+                <ul class="dropdown-menu">
+                    <li><a href="#">Mentor 1</a></li>
+                    <li><a href="#">Mentor 2</a></li>
+                    <li><a href="#">Mentor 3</a></li>
+                </ul>
+            </li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="#">About</a></li>
+            <li class="dropdown">
+                <a href="/auth/login.html">Account</a>
+                <ul class="dropdown-menu">
+                    <li><a href="public/auth/login.html">Login</a></li>
+                    <li><a href="public/auth/register.html">Register</a></li>
+                    <li><a href="public/auth/profile.html">Profile</a></li>
+                </ul>
+            </li>
+        </ul>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h2>Find Your Perfect Mentor</h2>
+    </section>
+
+    <!-- Nav2 Section -->
+    <section class="nav2">
+        <div class="multi-button">
+            <button>Resources</button>
+            <button>Session</button>
+            <button>Calender</button>
+        </div>
+    </section>
+
+    <!-- Main Section -->
+    <main>
+        <div class="container">
+            <div class="gradient-cards">
+                <!-- Mentor/Mentee Matching Card -->
+                <div class="card" id="mentor-card">
+                    <div class="container-card bg-green-box">
+                        <img src="./Home/production.png" width="80" height="80" alt="calls-messaging">
+                        <p class="card-title">Mentor/Mentee Matching</p>
+                        <p class="card-description">Smart algorithm to match mentors and mentees based on skills,  interests, and career goals.</p>
+                    </div>
+                </div>
+
+                <!-- Automated Calendar & Booking Card -->
+                <div class="card" id="calendar-card">
+                    <div class="container-card bg-white-box">
+                        <img src="./Home/schedule.png" width="80" height="80" alt="calls-messaging">
+                        <p class="card-title">Automated Calendar & Booking</p>
+                        <p class="card-description">An integrated calendar for mentors to set availability, allowing mentees to book sessions automatically.</p>
+                    </div>
+                </div>
+
+                <!-- Video Conferencing Card -->
+                <div class="card">
+                    <div class="container-card bg-yellow-box">
+                        <img src="./Home/facetime.png" width="80" height="80" alt="calls-messaging">
+                        <p class="card-title">Video Conferencing</p>
+                        <p class="card-description">Built-in video calling for live mentorship sessions.</p>
+                    </div>
+                </div>
+
+                <!-- Progress Tracker Card -->
+                <div class="card">
+                    <div class="container-card bg-blue-box">
+                        <img src="./Home/roadmap.png" width="80" height="80" alt="calls-messaging">
+                        <p class="card-title">Progress Tracker</p>
+                        <p class="card-description">Tools to track mentee progress, skill development, and session history.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mentor/Mentee Matching Modal -->
+        <div id="mentor-modal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('mentor-modal')">&times;</span>
+                <h2>Mentor/Mentee Matching</h2>
+                <div class="tabs">
+                    <button class="tab-button active" onclick="openTab('mentor-registration')">Register as Mentor</button>
+                    <button class="tab-button" onclick="openTab('mentee-search')">Find a Mentor</button>
+                </div>
+
+                <!-- Mentor Registration Form -->
+                <div id="mentor-registration" class="tab-content">
+                    <form id="mentor-form">
+                        <input type="text" id="mentor-name" placeholder="Your Name" required>
+                        <input type="email" id="mentor-email" placeholder="Your Email" required>
+                        <input type="text" id="mentor-skills" placeholder="Skills (comma-separated, e.g., Python, UI/UX)" required>
+                        <button type="submit">Register</button>
+                    </form>
+                </div>
+
+                <!-- Mentee Search Form -->
+                <div id="mentee-search" class="tab-content" style="display: none;">
+                    <div class="search-box">
+                        <input type="text" id="skill-search" placeholder="Enter skill (e.g., Python)">
+                        <button onclick="searchMentors()">Search</button>
+                    </div>
+                    <div id="mentor-results" class="mentor-results"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Calendar & Booking Modal -->
+        <div id="calendar-modal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('calendar-modal')">&times;</span>
+                <h2>Schedule a Session</h2>
+                <!-- Google Calendar Embed -->
+                <iframe src="https://calendar.google.com/calendar/embed?src=en.indian%23holiday%40group.v.calendar.google.com&ctz=Asia%2FKolkata" 
+                        style="border: 0; width: 100%; height: 400px;" 
+                        frameborder="0" 
+                        scrolling="no">
+                </iframe>
+                <!-- Booking Form -->
+                <form id="booking-form">
+                    <label for="name">Your Name:</label>
+                    <input type="text" id="name" name="name" required>
+                    
+                    <label for="email">Your Email:</label>
+                    <input type="email" id="email" name="email" required>
+                    
+                    <label for="date">Select Date:</label>
+                    <input type="date" id="date" name="date" required>
+                    
+                    <label for="time">Select Time:</label>
+                    <input type="time" id="time" name="time" required>
+                    
+                    <button type="submit">Book Session</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>Contact Information: elevated.com</p>
+        <p>&copy; 2025 ElevateEd. All rights reserved.</p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Open Mentor Modal
+        document.getElementById('mentor-card').addEventListener('click', () => {
+            document.getElementById('mentor-modal').style.display = 'block';
+        });
+
+        // Open Calendar Modal
+        document.getElementById('calendar-card').addEventListener('click', () => {
+            document.getElementById('calendar-modal').style.display = 'block';
+        });
+
+        // Close Modal
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+
+        // Tab Switching
+        function openTab(tabName) {
+            const tabs = document.querySelectorAll('.tab-content');
+            tabs.forEach(tab => tab.style.display = 'none');
+            document.getElementById(tabName).style.display = 'block';
+
+            const buttons = document.querySelectorAll('.tab-button');
+            buttons.forEach(button => button.classList.remove('active'));
+            event.currentTarget.classList.add('active');
+        }
+
+        // Mentor Registration
+        document.getElementById('mentor-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const mentor = {
+                name: document.getElementById('mentor-name').value,
+                email: document.getElementById('mentor-email').value,
+                skills: document.getElementById('mentor-skills').value.split(',').map(skill => skill.trim())
+            };
+
+            // Save to localStorage
+            let mentors = JSON.parse(localStorage.getItem('mentors') || '[]');
+            mentors.push(mentor);
+            localStorage.setItem('mentors', JSON.stringify(mentors));
+
+            alert('Registration successful!');
+            this.reset();
+        });
+
+        // Mentor Search Function
+        function searchMentors() {
+            const skill = document.getElementById('skill-search').value.toLowerCase();
+            const mentors = JSON.parse(localStorage.getItem('mentors') || '[]');
+            const results = document.getElementById('mentor-results');
+
+            results.innerHTML = mentors
+                .filter(mentor => 
+                    mentor.skills.some(s => s.toLowerCase().includes(skill))
+                )
+                .map(mentor => `
+                    <div class="mentor-card">
+                        <h3>${mentor.name}</h3>
+                        <p>Skills: ${mentor.skills.join(', ')}</p>
+                        <p>Email: ${mentor.email}</p>
+                        <button onclick="requestMentorship('${mentor.email}')">Request Session</button>
+                    </div>
+                `)
+                .join('');
+
+            if(results.innerHTML === '') {
+                results.innerHTML = '<p>No mentors found for this skill.</p>';
+            }
+        }
+
+        // Mentorship Request
+        function requestMentorship(email) {
+            const message = prompt('Enter your request message:');
+            if(message) {
+                alert(`Request sent to mentor!\nThey'll contact you at ${email}`);
+            }
+        }
+
+        // Calendar Booking Form
+        document.getElementById('booking-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const date = document.getElementById('date').value;
+            const time = document.getElementById('time').value;
+
+            alert(`Booking Confirmed!\nName: ${name}\nEmail: ${email}\nDate: ${date}\nTime: ${time}`);
+            closeModal('calendar-modal');
+        });
+    </script>
+</body>
+</html>
